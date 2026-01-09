@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Drug Reminder App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+
+<!-- NAVBAR -->
+<nav class="bg-white shadow">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold text-blue-600">DrugApp</h1>
+
+    <!-- Hamburger button (mobile only) -->
+    <button id="menu-btn" class="block md:hidden focus:outline-none">
+      <svg class="w-6 h-6 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+      </svg>
+    </button>
+
+    <!-- Menu links -->
+    <div id="menu" class="hidden flex-col md:flex md:flex-row md:space-x-4 md:items-center">
+      <a href="#features" class="block px-3 py-2 hover:text-blue-600">Features</a>
+      <a href="#about" class="block px-3 py-2 hover:text-blue-600">About</a>
+      <a href="#faq" class="block px-3 py-2 hover:text-blue-600">FAQs</a>
+      <a href="{% url 'signin' %}" class="block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+        Sign In
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const btn = document.getElementById('menu-btn');
+  const menu = document.getElementById('menu');
+
+  btn.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
+  });
+</script>
+
+
+
+<!-- HERO -->
+<section class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-24">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+        <h2 class="text-4xl md:text-5xl font-bold mb-6">
+            Never Miss Your Medication Again
+        </h2>
+        <p class="text-lg mb-8 max-w-2xl mx-auto">
+            DrugApp helps you manage medications, track diagnoses, and receive timely reminders via SMS and email.
+        </p>
+        <a href="{% url 'signup' %}" class="bg-white text-blue-600 px-8 py-3 rounded-xl font-semibold hover:bg-gray-100">
+            Get Started
+        </a>
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features" class="py-20">
+    <div class="max-w-7xl mx-auto px-6">
+        <h3 class="text-3xl font-bold text-center mb-12">Features</h3>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
+                <h4 class="text-xl font-semibold mb-2">Medication Reminders</h4>
+                <p>Get notified exactly when it’s time to take your medication.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
+                <h4 class="text-xl font-semibold mb-2">SMS & Email Alerts</h4>
+                <p>Receive reminders through SMS and email so you never forget.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition">
+                <h4 class="text-xl font-semibold mb-2">Personal Health Profile</h4>
+                <p>Store diagnosis, phone number, and profile image securely.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT US -->
+<section id="about" class="bg-gray-100 py-20">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+        <h3 class="text-3xl font-bold mb-6">About Us</h3>
+        <p class="max-w-3xl mx-auto text-lg">
+            DrugApp was created to help individuals manage their health more effectively.
+            We believe that no one should miss medication due to forgetfulness.
+            Our system provides reliable reminders, easy tracking, and a simple interface
+            designed for everyone.
+        </p>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="py-20">
+    <div class="max-w-6xl mx-auto px-6">
+        <h3 class="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h3>
+
+        <div class="space-y-6">
+            <div class="bg-white p-6 rounded-xl shadow">
+                <h4 class="font-semibold">Is DrugApp free to use?</h4>
+                <p class="mt-2 text-gray-600">Yes, basic features are completely free.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow">
+                <h4 class="font-semibold">How do reminders work?</h4>
+                <p class="mt-2 text-gray-600">
+                    You set medication times and receive alerts via SMS or email.
+                </p>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow">
+                <h4 class="font-semibold">Is my health data secure?</h4>
+                <p class="mt-2 text-gray-600">
+                    Yes. Your data is securely stored and accessible only to you.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="bg-blue-600 text-white py-16">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+        <h3 class="text-3xl font-bold mb-4">Start Managing Your Health Today</h3>
+        <p class="mb-6">Create an account and never miss your medication again.</p>
+        <a href="{% url 'signup' %}" class="bg-white text-blue-600 px-8 py-3 rounded-xl font-semibold hover:bg-gray-100">
+            Sign Up Now
+        </a>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-gray-900 text-gray-400 py-6 text-center">
+    <p>&copy; 2025 DrugApp. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
+
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+      <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+  <nav class="bg-white shadow">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="{% url 'index' %}">
+        <h1 class="text-xl font-bold text-blue-600">DrugApp</h1>
+      </a>
+
+
+      <!-- Hamburger button (mobile only) -->
+      <button id="menu-btn" class="block md:hidden focus:outline-none">
+        <svg class="w-6 h-6 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+        </svg>
+      </button>
+
+      <!-- Menu links -->
+      <div id="menu" class="hidden flex-col md:flex md:flex-row md:space-x-4 md:items-center">
+        <a href="#features" class="block px-3 py-2 hover:text-blue-600">Features</a>
+        <a href="#about" class="block px-3 py-2 hover:text-blue-600">About</a>
+        <a href="#faq" class="block px-3 py-2 hover:text-blue-600">FAQs</a>
+        <a href="{% url 'signin' %}" class="block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+          Sign In
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <script>
+    const btn = document.getElementById('menu-btn');
+    const menu = document.getElementById('menu');
+
+    btn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+  </script>
+
+
+
+
+
+
+
+
+
+<div class="min-h-screen bg-gray-50 flex items-center justify-center px-4">
+    <div class="w-full max-w-lg">
+
+        <!-- Card -->
+        <div class="bg-white border border-gray-200 rounded-2xl shadow-sm p-8">
+
+            <!-- Header -->
+            <div class="mb-6 text-center">
+                <h2 class="text-2xl font-semibold text-gray-800">
+                    Update Profile
+                </h2>
+                <p class="text-sm text-gray-500 mt-1">
+                    Manage your personal information and profile picture
+                </p>
+            </div>
+
+            <!-- Form -->
+            <form method="POST" enctype="multipart/form-data" class="space-y-6">
+                {% csrf_token %}
+
+                <!-- Django form output -->
+                <div class="space-y-4 text-sm text-gray-700">
+                    {{ form.as_p }}
+                </div>
+
+                <!-- Action -->
+                <button
+                    type="submit"
+                    class="w-full py-2.5 rounded-lg bg-blue-600 text-white font-medium
+                           hover:bg-blue-700 focus:outline-none focus:ring-2
+                           focus:ring-blue-300 transition"
+                >
+                    Save Changes
+                </button>
+            </form>
+        </div>
+
+        <!-- Profile Picture Preview -->
+        {% if user.profile.profile_picture %}
+        <div class="mt-6 flex flex-col items-center">
+            <span class="text-sm text-gray-500 mb-2">
+                Current Profile Picture
+            </span>
+            <img
+                src="{{ user.profile.profile_picture.url }}"
+                alt="Profile Picture"
+                class="w-32 h-32 rounded-full object-cover ring-4 ring-blue-100 shadow"
+            >
+        </div>
+        {% endif %}
+
+    </div>
+</div>
+
+
+  <footer class="fixed bottom-0 left-0 right-0 bg-gray-900 text-gray-400 py-6 text-center z-50">
+    <p>&copy; 2025 DrugApp. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

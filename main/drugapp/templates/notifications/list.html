@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+<h1 class="text-3xl font-bold mb-8 text-gray-900 text-center">Your Medication Notifications</h1>
+
+{% for notification in notifications %}
+  <div class="bg-white shadow rounded-lg p-6 mb-6 max-w-md mx-auto border border-gray-200 hover:shadow-lg transition">
+    <p class="mb-2"><strong>Medicine:</strong> {{ notification.schedule.medication.drug_name }}</p>
+    <p class="mb-2"><strong>Dose Time:</strong> {{ notification.schedule.dose_time }}</p>
+    <p class="mb-2"><strong>Sent At:</strong> {{ notification.sent_at|date:"M d, Y H:i" }}</p>
+    <p class="mb-2"><strong>Status:</strong> 
+      <span class="{% if notification.status == 'SENT' %}text-green-600{% else %}text-red-600{% endif %}">
+        {{ notification.status }}
+      </span>
+    </p>
+    <p class="mb-2"><strong>Adherence:</strong> 
+      <span class="{% if notification.adherence == 'TAKEN' %}text-green-600
+                   {% elif notification.adherence == 'MISSED' %}text-red-600
+                   {% else %}text-yellow-600{% endif %}">
+        {{ notification.adherence }}
+      </span>
+    </p>
+  </div>
+{% empty %}
+  <p class="text-gray-500 italic">No notifications yet.</p>
+{% endfor %}
+
+
+</body>
+</html>
